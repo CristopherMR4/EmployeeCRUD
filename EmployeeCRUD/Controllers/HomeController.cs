@@ -1,32 +1,31 @@
 using System.Diagnostics;
 using EmployeeCRUD.Models;
 using Microsoft.AspNetCore.Mvc;
+//importanciones
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using EmployeeCRUD.Model;
+//
+
 
 namespace EmployeeCRUD.Controllers
 {
-    public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
+    public class HomeController : Controller {
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly CrudEmployeeContext _dbContext;
+
+        public HomeController(CrudEmployeeContext dbContext)
         {
-            _logger = logger;
+                _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Employee>EmployeeList = _dbContext.Employees.Include(r => r.ObjRol).ToList();
+            //Consulta a la BD para traer la data incluyyendo los datos relacionados de la tabla Rol
+            return View(EmployeeList);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
