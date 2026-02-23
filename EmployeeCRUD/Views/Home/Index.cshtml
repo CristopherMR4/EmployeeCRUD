@@ -1,8 +1,49 @@
-﻿@{
+﻿@model List<EmployeeCRUD.Model.Employee>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome to the Review with GITHUB</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <hr />
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Lists of Employees</h5>
+    </div>
+    <div class="card-body"> 
+        <!--Aun no se ha creado el controlador EmployeeDetail, debe mantener el mimso nombre y a la hora de agregar la varibale como parametro
+            debe tener el nombre de IdEmployee -->
+        <a class="btn btn-success btn-sm" asp-action="EmployeeDetail" asp-controller="Home" asp-route-IdEmployee="0">Add Employee</a>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Mail</th>
+                    <th>CellPhone</th>
+                    <th>Rol</th>
+                </tr>
+
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model) {
+                
+                <tr>
+                   <td>@item.UserName</td>
+                   <td>@item.Mail</td>
+                   <td>@item.Cellphone</td>
+                   <td>@item.ObjRol.Detail</td>
+                </tr>
+                }
+
+            </tbody>
+
+        </table>
+
+        
+    </div>
 </div>
