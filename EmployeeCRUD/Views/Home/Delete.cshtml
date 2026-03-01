@@ -1,0 +1,49 @@
+﻿@model EmployeeCRUD.Model.Employee
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <h1>Delete Employee</h1>
+    <hr />
+
+<div class="row">
+    <div class="col-sm-4">
+        <form asp-action="Delete" asp-controller="Home" method="post">
+            <input type="hidden" asp-for="IdEmployee" />
+            <div class="mb-2">
+                <label class="form-label" asp-for="UserName">Full Name</label>
+                <input type="text" class="form-control sm" placeholder="Employee Name" asp-for="UserName" disabled/>
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="Mail">Email</label>
+                <input type="text" class="form-control sm" asp-for="Mail" placeholder="Employee Mail" disabled/>
+            </div>
+            <div class="mb-2">
+                <label class="form-label" asp-for="Cellphone">Telephone Number</label>
+                <input type="number" class="form-control sm" asp-for="Cellphone"  disabled/>
+            </div>
+
+            <div class="mb-2">
+
+                <label class="form-label" asp-for="Rolid">Rol</label>
+                <input type="text" class="form-control sm" asp-for="ObjRol.Detail" disabled/>
+
+            </div>
+            <br />
+
+            <div class="mb-2">
+
+
+                    <button class="btn btn-outline-danger btn-sm w-25" type="submit">DELETE</button>
+
+
+                <a class="btn btn-dark btn-sm w-25" asp-action="index" asp-controller="Home">Go back</a>
+            </div>
+
+
+
+        </form>
+    </div>
+</div>
