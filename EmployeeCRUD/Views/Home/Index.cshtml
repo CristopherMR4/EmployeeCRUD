@@ -38,8 +38,8 @@
                    <td>@item.Cellphone</td>
                    <td>@item.ObjRol.Detail</td>
                    <td>
-                       <a class="btn btn-primary btn-sm">Edit</a>
-                       <a class="btn btn-danger btn-sm">Eliminate</a>
+                       <a class="btn btn-warning btn-sm" asp-action="EmployeeDetail" asp-controller="Home" asp-route-IdEmployee ="@item.IdEmployee">Edit</a>
+                       <a class="btn btn-danger btn-sm" asp-action="Delete" asp-controller="Home" asp-route-IdEmployee ="@item.IdEmployee">Eliminate</a>
                    </td>
                 </tr>
                 }
