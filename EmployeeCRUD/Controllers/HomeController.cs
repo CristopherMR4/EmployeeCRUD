@@ -71,6 +71,20 @@ namespace EmployeeCRUD.Controllers
             return RedirectToAction("Index","Home");
         }
 
+        [HttpGet]
+        public IActionResult Delete(int IdEmployee)
+        {
+            Employee Oemployee = _dbContext.Employees.Include(r => r.ObjRol).Where(e => e.IdEmployee ==IdEmployee).FirstOrDefault();
+            return View(Oemployee);
+        }
 
+        [HttpPost]
+        public IActionResult Delete(Employee Oemployee)
+        {
+            _dbContext.Employees.Remove(Oemployee);
+            _dbContext.SaveChanges();
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
