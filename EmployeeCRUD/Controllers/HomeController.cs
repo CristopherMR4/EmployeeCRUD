@@ -29,7 +29,7 @@ namespace EmployeeCRUD.Controllers
         }
 
         [HttpGet]
-        public IActionResult EmployeeDetail() {
+        public IActionResult EmployeeDetail(int IdEmployee) {
 
             //creation of an object that will help us to create a new employee in a safer way than directly
             //affecting the main classes.
@@ -45,6 +45,11 @@ namespace EmployeeCRUD.Controllers
                 
 
             };
+            //We are looking for the employee ID
+            if(IdEmployee != 0)
+            {
+                oEmployeeVM.oEmployee = _dbContext.Employees.Find(IdEmployee);
+            }
 
             return View(oEmployeeVM);        
         }
@@ -56,8 +61,12 @@ namespace EmployeeCRUD.Controllers
             {
                 _dbContext.Employees.Add(oEmployeeVM.oEmployee);
             }
+            else
+            {
+                _dbContext.Employees.Update(oEmployeeVM.oEmployee);
+            }
 
-            _dbContext.SaveChanges();
+                _dbContext.SaveChanges();
 
             return RedirectToAction("Index","Home");
         }
